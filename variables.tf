@@ -67,3 +67,15 @@ variable "subnet_name_pvt_2" {
     type = string
     
 }
+
+variable "igw" {
+
+    type = string
+    
+}
+
+variable "nat" {
+
+    type = string
+    
+}

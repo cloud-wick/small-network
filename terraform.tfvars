@@ -14,3 +14,7 @@ subnet_name_pvt_1 = "small-network-useast1-subnet-pvt_sub_2"
 
 cidr_block_pvt_2  = "10.0.4.0/24"
 subnet_name_pvt_2 = "small-network-useast1-subnet-pvt_sub_2"
+
+igw = "small-network-useast1-igw"
+
+nat = "small-network-useast1-nat"

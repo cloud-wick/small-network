@@ -17,5 +17,8 @@ module "network" {
     cidr_block_pvt_2  = var.cidr_block_pvt_2
     subnet_name_pvt_2 = var.subnet_name_pvt_2
 
+    igw = var.igw
+    nat = var.nat
+
 }
 

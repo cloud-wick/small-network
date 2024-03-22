@@ -1,3 +1,6 @@
+
+############################################# VPC #########################################################
+
 resource "aws_vpc" "small-network-useast1-vpc-main" {
   cidr_block = var.cidr_block
 
@@ -6,6 +9,8 @@ resource "aws_vpc" "small-network-useast1-vpc-main" {
     Name = var.vpc_name
   }
 }
+
+############################################# SUBNETs #########################################################
 
 resource "aws_subnet" "small-network-useast1-subnet-pub_sub_1" {
 
@@ -47,10 +52,36 @@ resource "aws_subnet" "small-network-useast1-subnet-pvt_sub_2" {
   }
 }
 
+
+############################################# GATEWAYS #########################################################
+
 resource "aws_internet_gateway" "small-network-useast1-igw" {
   vpc_id = aws_vpc.small-network-useast1-vpc-main.id
 
   tags = {
-    Name = "small-network-useast1-igw"
+    Name = var.igw
+
   }
 }
+
+resource "aws_eip" "small-network-useast1-eip" {
+  domain = "vpc"
+
+  #associate_with_private_ip = "10.0.0.12"
+  #depends_on                = [aws_nat_gateway.small-network-useast1-nat]
+}
+
+resource "aws_nat_gateway" "small-network-useast1-nat" {
+  allocation_id = aws_eip.small-network-useast1-eip.id
+  subnet_id     = aws_subnet.small-network-useast1-subnet-pub_sub_1.id
+
+  tags = {
+    Name = var.nat
+  }
+
+
+  depends_on = [aws_internet_gateway.small-network-useast1-igw]
+}
+
+############################################# ROUTE TABLES #########################################################
+
