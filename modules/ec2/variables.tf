@@ -1,5 +1,3 @@
-############# EC2 #############
-
 # web ec2 vars
 
 variable "web-ami" {
@@ -14,13 +12,13 @@ variable "web-key" {
   type = string
 }
 
-# variable "web_ec2-subnet" {
-#   type = string
-# }
+variable "web_ec2-subnet" {
+  type = string
+}
 
-# variable "web-sg" {
-#   type = list(string)
-# }
+variable "web-sg" {
+  type = list(string)
+}
 
 variable "web_ec2-name" {
   type = string
@@ -40,13 +38,13 @@ variable "app-key" {
   type = string
 }
 
-# variable "app_ec2-subnet" {
-#   type = string
-# }
+variable "app_ec2-subnet" {
+  type = string
+}
 
-# variable "app-sg" {
-#   type = list(string)
-# }
+variable "app-sg" {
+  type = list(string)
+}
 
 variable "app_ec2-name" {
   type = string
@@ -66,13 +64,13 @@ variable "bas-key" {
   type = string
 }
 
-# variable "bas_ec2-subnet" {
-#   type = string
-# }
+variable "bas_ec2-subnet" {
+  type = string
+}
 
-# variable "bas-sg" {
-#   type = list(string)
-# }
+variable "bas-sg" {
+  type = list(string)
+}
 
 variable "bas_ec2-name" {
   type = string
