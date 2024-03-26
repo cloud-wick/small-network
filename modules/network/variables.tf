@@ -71,3 +71,21 @@ variable "nat" {
     type = string
     
 }
+
+variable "pub_rt" {
+
+    type = string
+    
+}
+
+variable "web_rt" {
+
+    type = string
+    
+}
+
+variable "app_rt" {
+
+    type = string
+    
+}

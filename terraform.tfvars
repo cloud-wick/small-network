@@ -18,3 +18,7 @@ subnet_name_pvt_2 = "small_network-useast1-subnet-pvt_sub_2"
 igw = "small_network-useast1-igw"
 
 nat = "small_network-useast1-nat"
+
+pub_rt = "small_network-useast1-pub_rt"
+app_rt = "small_network-useast1-app_rt"
+web_rt = "small_network-useast1-web_rt"

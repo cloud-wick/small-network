@@ -20,5 +20,9 @@ module "network" {
     igw = var.igw
     nat = var.nat
 
+    pub_rt = var.pub_rt
+    web_rt = var.web_rt
+    app_rt = var.app_rt
+
 }
 

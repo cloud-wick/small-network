@@ -12,9 +12,15 @@ resource "aws_vpc" "small_network-useast1-vpc-main" {
 
 ############################################# SUBNETs #########################################################
 
+data "aws_availability_zones" "small_network-useast1-az" {
+  
+}
+
+
 resource "aws_subnet" "small_network-useast1-subnet-pub_sub_1" {
 
-  vpc_id     = aws_vpc.small_network-useast1-vpc-main.id                                       
+  vpc_id     = aws_vpc.small_network-useast1-vpc-main.id
+  availability_zone = data.aws_availability_zones.small_network-useast1-az.names[0]                                       
   cidr_block = var.cidr_block_pub_1
 
   tags = {
@@ -24,7 +30,8 @@ resource "aws_subnet" "small_network-useast1-subnet-pub_sub_1" {
 
 resource "aws_subnet" "small_network-useast1-subnet-pub_sub_2" {
 
-  vpc_id     = aws_vpc.small_network-useast1-vpc-main.id                                     
+  vpc_id     = aws_vpc.small_network-useast1-vpc-main.id
+  availability_zone = data.aws_availability_zones.small_network-useast1-az.names[1]                                      
   cidr_block = var.cidr_block_pub_2
 
   tags = {
@@ -34,7 +41,8 @@ resource "aws_subnet" "small_network-useast1-subnet-pub_sub_2" {
 
 resource "aws_subnet" "small_network-useast1-subnet-pvt_sub_1" {
 
-  vpc_id     = aws_vpc.small_network-useast1-vpc-main.id                                       
+  vpc_id     = aws_vpc.small_network-useast1-vpc-main.id
+  availability_zone = data.aws_availability_zones.small_network-useast1-az.names[0]                                        
   cidr_block = var.cidr_block_pvt_1
 
   tags = {
@@ -44,7 +52,8 @@ resource "aws_subnet" "small_network-useast1-subnet-pvt_sub_1" {
 
 resource "aws_subnet" "small_network-useast1-subnet-pvt_sub_2" {
 
-  vpc_id     = aws_vpc.small_network-useast1-vpc-main.id                                       
+  vpc_id     = aws_vpc.small_network-useast1-vpc-main.id
+  availability_zone = data.aws_availability_zones.small_network-useast1-az.names[1]                                        
   cidr_block = var.cidr_block_pvt_2
 
   tags = {
@@ -85,3 +94,41 @@ resource "aws_nat_gateway" "small_network-useast1-nat" {
 
 ############################################# ROUTE TABLES #########################################################
 
+resource "aws_route_table" "small_network-useast1-pub_rt" {
+  vpc_id = "${aws_vpc.small_network-useast1-vpc-main.id}"
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_internet_gateway.small_network-useast1-igw.id}"
+  }
+
+  tags = {
+    Name = var.pub_rt
+  }
+}
+
+resource "aws_route_table" "small_network-useast1-pvt_web_rt" {
+  vpc_id = "${aws_vpc.small_network-useast1-vpc-main.id}"
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_nat_gateway.small_network-useast1-nat.id}"
+  }
+
+  tags = {
+    Name = var.web_rt
+  }
+}
+
+resource "aws_route_table" "small_network-useast1-pvt_app_rt" {
+  vpc_id = "${aws_vpc.small_network-useast1-vpc-main.id}"
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${aws_nat_gateway.small_network-useast1-nat.id}"
+  }
+
+  tags = {
+    Name = var.app_rt
+  }
+}
