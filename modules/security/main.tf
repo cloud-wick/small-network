@@ -71,24 +71,24 @@ resource "aws_security_group" "web_ec2-sg" {
 # bastion ec2 sec grp
 resource "aws_security_group" "bastion-sg" {
   name = var.bastion-sg
-  description = "enable https/http on port 443/80"
+  description = "enable https/http/rdp on port 443/80/3389"
   vpc_id = var.vpc_id
 
   ingress {
-    description = "http access"
-    from_port   = 80
-    to_port     = 80
+    description = "rdp access"
+    from_port   = 3389
+    to_port     = 3389
     protocol    = "tcp"
     cidr_blocks = var.bastion-cidrs
   }
 
-   ingress {
-    description = "https access"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = var.bastion-cidrs
-  }
+  #  ingress {
+  #   description = "https access"
+  #   from_port   = 443
+  #   to_port     = 443
+  #   protocol    = "tcp"
+  #   cidr_blocks = var.bastion-cidrs
+  # }
 
    egress {
     from_port   = 0
