@@ -1,5 +1,7 @@
 # tf file to create key paird and secrets in secret manager
 
+######################## pem files ########################
+
 provider "aws" {
   region = "us-east-1" 
 }
@@ -47,4 +49,23 @@ resource "aws_key_pair" "bas-key_pair" {
 resource "local_file" "local-bas_ec2-key" {
   filename = "small_network-bas_ec2-kp.pem"
   content  = tls_private_key.my_key.private_key_pem
+}
+
+
+######################## rds secrets ########################
+
+resource "aws_secretsmanager_secret" "rds-secret" {
+   name = "small_network-rds_creds"
+}
+ 
+# secret versions for rds
+ 
+resource "aws_secretsmanager_secret_version" "secret-version" {
+  secret_id = aws_secretsmanager_secret.rds-secret.id
+  secret_string = <<EOF
+   {
+    "username": "rdsadmin",
+    "password": "F#9#C16iMG7Y6*PVe=bG"
+   }
+EOF
 }
