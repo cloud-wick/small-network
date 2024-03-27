@@ -47,20 +47,20 @@ module "ec2" {
   web-instance_type = var.web-instance_type
   web-key = var.web-key
   web_ec2-subnet = module.network.sub_id_pvt_1 # change
-  web-sg = module.security.alb_sg-id # change
+  web-sg = [module.security.alb_sg-id] # change
   web_ec2-name = var.web_ec2-name
 
   app-ami = var.app-ami
   app-instance_type = var.app-instance_type
   app-key = var.app-key
   app_ec2-subnet = module.network.sub_id_pvt_2# change
-  app-sg = module.security.web_ec2_sg-id # change
+  app-sg = [module.security.web_ec2_sg-id] # change
   app_ec2-name = var.app_ec2-name
 
   bas-ami = var.bas-ami
   bas-instance_type = var.bas-instance_type
   bas-key = var.bas-key
   bas_ec2-subnet = module.network.sub_id_pub_1 # change
-  bas-sg = module.security.bastion_sg-id # change
+  bas-sg = [module.security.bastion_sg-id] # change
   bas_ec2-name = var.bas_ec2-name
 }

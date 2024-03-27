@@ -1,6 +1,6 @@
 # web ec2
 resource "aws_instance" "web_ec2" {
-  ami                    = var.web-instance_type
+  ami                    = var.web-ami
   instance_type          = var.web-instance_type    
   key_name               = var.web-key
   subnet_id              = var.web_ec2-subnet
@@ -13,7 +13,7 @@ resource "aws_instance" "web_ec2" {
 
 # app ec2
 resource "aws_instance" "app_ec2" {
-  ami                    = var.app-instance_type
+  ami                    = var.app-ami
   instance_type          = var.app-instance_type    
   key_name               = var.app-key
   subnet_id              = var.app_ec2-subnet
@@ -25,8 +25,8 @@ resource "aws_instance" "app_ec2" {
 }
 
 # bas ec2
-resource "aws_instance" "app_ec2" {
-  ami                    = var.bas-instance_type
+resource "aws_instance" "bas_ec2" {
+  ami                    = var.bas-ami
   instance_type          = var.bas-instance_type    
   key_name               = var.bas-key
   subnet_id              = var.bas_ec2-subnet
