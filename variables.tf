@@ -1,3 +1,5 @@
+################### network ###################
+
 variable "cidr_block"{
     type = string
     default = "10.0.0.0/16"
@@ -9,11 +11,6 @@ variable "vpc_name"{
     
   
 }
-
-
-# variable "vpc_id" {                         
-#     type = string  
-# }
 
 
 variable "cidr_block_pub_1" {
@@ -96,4 +93,35 @@ variable "app_rt" {
 
     type = string
     
+}
+
+
+################### security ###################
+
+variable "alb-sg" {
+  type = string
+}
+
+# variable "vpc_id" {
+#   type = string
+# }
+
+variable "web_ec2-sg" {
+  type = string
+}
+
+variable "bastion-sg" {
+  type = string
+}
+
+variable "bastion-cidrs" {
+  type = list(string)
+}
+
+variable "rds-sg" {
+  type = string
+}
+
+variable "rds-port" {
+  
 }
