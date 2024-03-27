@@ -132,3 +132,26 @@ resource "aws_route_table" "small_network-useast1-pvt_app_rt" {
     Name = var.app_rt
   }
 }
+
+
+############################################# ROUTE TABLES ASSOCIATE #########################################################
+
+resource "aws_route_table_association" "pub_rt-to-pub_sub_1" {
+  subnet_id      = aws_subnet.small_network-useast1-subnet-pub_sub_1.id
+  route_table_id = aws_route_table.small_network-useast1-pub_rt.id
+}
+
+resource "aws_route_table_association" "pub_rt-to-pub_sub_2" {
+  subnet_id      = aws_subnet.small_network-useast1-subnet-pub_sub_2.id
+  route_table_id = aws_route_table.small_network-useast1-pub_rt.id
+}
+
+resource "aws_route_table_association" "web_rt-to-pvt_sub_1" {
+  subnet_id      = aws_subnet.small_network-useast1-subnet-pvt_sub_1.id
+  route_table_id = aws_route_table.small_network-useast1-pvt_web_rt.id
+}
+
+resource "aws_route_table_association" "app_rt-to-pvt_sub_2" {
+  subnet_id      = aws_subnet.small_network-useast1-subnet-pvt_sub_2.id
+  route_table_id = aws_route_table.small_network-useast1-pvt_app_rt.id
+}
