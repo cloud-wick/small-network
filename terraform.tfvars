@@ -33,3 +33,24 @@ bastion-sg = "small_network-us_east_1-bastion-sg"
 bastion-cidrs = [ "1.2.3.4/32" ] # change
 rds-sg = "small_network-us_east_1-rds-sg"
 rds-port = 5432 # change
+
+
+################### ec2 ###################
+
+# web ec2 vars
+web-ami = "ami-0c101f26f147fa7fd"
+web-instance_type = "t3.micro"
+web-key = "small_network-web_ec2-kp"
+web_ec2-name = "small_network-us_east_1-web_ec2"
+
+# app ec2 vars
+app-ami = "ami-0c101f26f147fa7fd"
+app-instance_type = "t3.micro"
+app-key = "small_network-app_ec2-kp"
+app_ec2-name = "small_network-us_east_1-app_ec2"
+
+# bas ec2 vars
+bas-ami = "ami-03cd80cfebcbb4481"
+bas-instance_type = "t3.large"
+bas-key = "small_network-bas_ec2-kp"
+bas_ec2-name = "small_network-us_east_1-bas_ec2"
